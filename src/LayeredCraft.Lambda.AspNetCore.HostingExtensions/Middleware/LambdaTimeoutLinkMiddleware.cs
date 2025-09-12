@@ -69,66 +69,87 @@ public sealed class LambdaTimeoutLinkMiddleware
     /// set an appropriate status code (504 for timeout, 499 for client disconnect), and avoid writing a body.
     /// </remarks>
     public async Task InvokeAsync(HttpContext context)
+{
+    ArgumentNullException.ThrowIfNull(context);
+
+    var original = context.RequestAborted;
+
+    var lambdaContext = context.Items.TryGetValue(AbstractAspNetCoreFunction.LAMBDA_CONTEXT, out var ctxObj)
+        ? ctxObj as ILambdaContext
+        : null;
+
+    var timeoutDuration = lambdaContext is null
+        ? TimeSpan.FromDays(1)
+        : GetTimeLeft(lambdaContext.RemainingTime, _buffer);
+
+    // Short-circuit: already out of time
+    if (timeoutDuration <= TimeSpan.Zero)
     {
-        ArgumentNullException.ThrowIfNull(context);
-
-        // Store original token (client disconnects, server aborts, etc.)
-        var original = context.RequestAborted;
-
-        // ILambdaContext is provided by the AWS hosting shim; null in local dev/Kestrel.
-        var lambdaContext = context.Items.TryGetValue(AbstractAspNetCoreFunction.LAMBDA_CONTEXT, out var ctxObj)
-            ? ctxObj as ILambdaContext
-            : null;
-
-        // Create timeout CTS from RemainingTime (never fires locally)
-        using var timeoutCts = lambdaContext is null
-            ? new CancellationTokenSource(TimeSpan.FromDays(1)) // effectively "never" in local dev
-            : new CancellationTokenSource(GetTimeLeft(lambdaContext.RemainingTime, _buffer));
-
-        // Link both: client abort OR timeout -> cancel
-        using var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(original, timeoutCts.Token);
-
-        // Replace RequestAborted with the linked token so downstream sees the combined semantics
-        context.RequestAborted = linkedCts.Token;
-
-        try
+        if (!context.Response.HasStarted)
         {
-            await _next(context).ConfigureAwait(false);
+            context.Response.StatusCode = StatusCodes.Status504GatewayTimeout;
+            context.Response.ContentLength = 0;
         }
-        catch (OperationCanceledException) when (linkedCts.IsCancellationRequested)
+        return;
+    }
+
+    using var timeoutCts = new CancellationTokenSource(timeoutDuration);
+    using var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(original, timeoutCts.Token);
+
+    var cancelledByTimeout = false;
+    var cancelledByClient  = false;
+    DateTimeOffset? timeoutAt = null, clientCancelAt = null;
+
+    using var _regClient  = original.Register(() => { cancelledByClient  = true; clientCancelAt = DateTimeOffset.UtcNow; });
+    using var _regTimeout = timeoutCts.Token.Register(() => { cancelledByTimeout = true; timeoutAt   = DateTimeOffset.UtcNow; });
+
+    // Expose the linked token to downstream
+    context.RequestAborted = linkedCts.Token;
+
+    try
+    {
+        await _next(context).ConfigureAwait(false);
+
+        // If something cancelled but downstream didn't throw, finalize here
+        if (linkedCts.IsCancellationRequested && !context.Response.HasStarted)
         {
-            // Determine the cancellation source for clearer telemetry
-            var byTimeout = timeoutCts.IsCancellationRequested;
+            var byTimeout =
+                cancelledByTimeout && !cancelledByClient
+                || (cancelledByTimeout && cancelledByClient && timeoutAt <= clientCancelAt);
 
-            _logger.Warning(
-                "Request cancelled ({Reason}). Path: {Path}, RemainingTimeMs: {RemainingMs}",
-                byTimeout ? "Lambda timeout" : "Client disconnect",
-                context.Request.Path,
-                lambdaContext?.RemainingTime.TotalMilliseconds);
-
-            // Finish gracefully: set only a status code; DO NOT write a body
-            if (context.Response.HasStarted) return;
-            try
-            {
-                context.Response.Headers.Clear();
-                context.Response.ContentLength = 0;
-                context.Response.StatusCode = byTimeout
-                    ? StatusCodes.Status504GatewayTimeout
-                    : ClientClosedRequest; // 499
-            }
-            catch
-            {
-                // Best effort; swallow any response write issues on a canceled stream.
-            }
-
-            // Swallow to avoid "Unknown error responding to request: TaskCanceledException"
-        }
-        finally
-        {
-            // Restore original token (defensive)
-            context.RequestAborted = original;
+            context.Response.StatusCode = byTimeout
+                ? StatusCodes.Status504GatewayTimeout
+                : ClientClosedRequest; // consider 504 here too
+            context.Response.ContentLength = 0;
         }
     }
+    catch (OperationCanceledException) when (linkedCts.IsCancellationRequested)
+    {
+        var byTimeout =
+            cancelledByTimeout && !cancelledByClient
+            || (cancelledByTimeout && cancelledByClient && timeoutAt <= clientCancelAt);
+
+        _logger.LogWarning(
+            "Request cancelled ({Reason}). Path: {Path}, RemainingTimeMs: {RemainingMs}, TimeoutDurationMs: {TimeoutMs}",
+            byTimeout ? "Lambda timeout" : "Client disconnect",
+            context.Request.Path,
+            lambdaContext?.RemainingTime.TotalMilliseconds,
+            timeoutDuration.TotalMilliseconds);
+
+        if (!context.Response.HasStarted)
+        {
+            context.Response.StatusCode = byTimeout
+                ? StatusCodes.Status504GatewayTimeout
+                : ClientClosedRequest; // or 504
+            context.Response.ContentLength = 0;
+        }
+        // swallow; cancelled pipeline
+    }
+    finally
+    {
+        context.RequestAborted = original;
+    }
+}
 
     /// <summary>
     /// Calculates the time remaining before Lambda timeout, accounting for the safety buffer.
