@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>LayeredCraft.Lambda.AspNetCore.Hosting</RootNamespace>
+        <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+        <LangVersion>default</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Amazon.Lambda.AspNetCoreServer" Version="9.2.0" />
+      <PackageReference Include="LayeredCraft.StructuredLogging" Version="1.1.1.8" />
+    </ItemGroup>
+
+</Project>
