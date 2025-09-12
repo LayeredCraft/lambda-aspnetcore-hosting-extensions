@@ -1,0 +1,166 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+.main-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 2rem 0;
+  margin-bottom: 2rem;
+  
+  h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 300;
+  }
+  
+  .tagline {
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
+    opacity: 0.9;
+  }
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.feature-card {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 1.5rem;
+  
+  h3 {
+    color: #495057;
+    margin-top: 0;
+  }
+  
+  .emoji {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+}
+
+.badge-container {
+  margin: 1rem 0;
+  
+  img {
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.code-example {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 1rem 0;
+  
+  pre {
+    margin: 0;
+    background: none;
+    border: none;
+    padding: 0;
+  }
+}
+
+.warning-box {
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-left: 4px solid #f39c12;
+  border-radius: 4px;
+  padding: 1rem;
+  margin: 1rem 0;
+  
+  .warning-title {
+    font-weight: bold;
+    color: #856404;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.info-box {
+  background: #d1ecf1;
+  border: 1px solid #bee5eb;
+  border-left: 4px solid #17a2b8;
+  border-radius: 4px;
+  padding: 1rem;
+  margin: 1rem 0;
+  
+  .info-title {
+    font-weight: bold;
+    color: #0c5460;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.success-box {
+  background: #d4edda;
+  border: 1px solid #c3e6cb;
+  border-left: 4px solid #28a745;
+  border-radius: 4px;
+  padding: 1rem;
+  margin: 1rem 0;
+  
+  .success-title {
+    font-weight: bold;
+    color: #155724;
+    margin-bottom: 0.5rem;
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  
+  th, td {
+    text-align: left;
+    padding: 0.75rem;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #495057;
+  }
+  
+  tbody tr:hover {
+    background-color: #f8f9fa;
+  }
+}
+
+.nav-links {
+  margin: 2rem 0;
+  
+  a {
+    display: inline-block;
+    background: #007bff;
+    color: white;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
+    
+    &:hover {
+      background: #0056b3;
+    }
+  }
+}
+
+.footer {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e9ecef;
+  text-align: center;
+  color: #6c757d;
+}
