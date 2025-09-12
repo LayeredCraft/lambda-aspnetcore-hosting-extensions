@@ -33,6 +33,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{93154236-6
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{064CF7F9-2FC5-45EF-9718-346EC81E819A}"
+	ProjectSection(SolutionItems) = preProject
+		docs\assets\icon.png = docs\assets\icon.png
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "css", "css", "{72A05CD4-4462-4402-A972-49C30910EC82}"
 	ProjectSection(SolutionItems) = preProject
