@@ -47,6 +47,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "middleware", "middleware", 
 		docs\middleware\lambda-timeout-middleware.md = docs\middleware\lambda-timeout-middleware.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LayeredCraft.Lambda.AspNetCore.HostingExtensions.Tests", "test\LayeredCraft.Lambda.AspNetCore.HostingExtensions.Tests\LayeredCraft.Lambda.AspNetCore.HostingExtensions.Tests.csproj", "{EB5EF2DF-D345-4ACA-8017-DDBE8A056F2C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,18 @@ Global
 		{789D3B32-3F92-4628-8416-08F3927E1B57}.Release|x64.Build.0 = Release|Any CPU
 		{789D3B32-3F92-4628-8416-08F3927E1B57}.Release|x86.ActiveCfg = Release|Any CPU
 		{789D3B32-3F92-4628-8416-08F3927E1B57}.Release|x86.Build.0 = Release|Any CPU
+		{EB5EF2DF-D345-4ACA-8017-DDBE8A056F2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB5EF2DF-D345-4ACA-8017-DDBE8A056F2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB5EF2DF-D345-4ACA-8017-DDBE8A056F2C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{EB5EF2DF-D345-4ACA-8017-DDBE8A056F2C}.Debug|x64.Build.0 = Debug|Any CPU
+		{EB5EF2DF-D345-4ACA-8017-DDBE8A056F2C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EB5EF2DF-D345-4ACA-8017-DDBE8A056F2C}.Debug|x86.Build.0 = Debug|Any CPU
+		{EB5EF2DF-D345-4ACA-8017-DDBE8A056F2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB5EF2DF-D345-4ACA-8017-DDBE8A056F2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB5EF2DF-D345-4ACA-8017-DDBE8A056F2C}.Release|x64.ActiveCfg = Release|Any CPU
+		{EB5EF2DF-D345-4ACA-8017-DDBE8A056F2C}.Release|x64.Build.0 = Release|Any CPU
+		{EB5EF2DF-D345-4ACA-8017-DDBE8A056F2C}.Release|x86.ActiveCfg = Release|Any CPU
+		{EB5EF2DF-D345-4ACA-8017-DDBE8A056F2C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,5 +93,6 @@ Global
 		{72A05CD4-4462-4402-A972-49C30910EC82} = {064CF7F9-2FC5-45EF-9718-346EC81E819A}
 		{F52AB59C-12E2-4563-B811-888F9CFE884B} = {93154236-6904-4ED9-BF76-B0B8EDE6B578}
 		{CEFF8EF9-B530-472C-A963-A953728322BB} = {93154236-6904-4ED9-BF76-B0B8EDE6B578}
+		{EB5EF2DF-D345-4ACA-8017-DDBE8A056F2C} = {C52DAB93-ADC4-423B-9820-C705A55436A3}
 	EndGlobalSection
 EndGlobal
