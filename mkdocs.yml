@@ -96,9 +96,8 @@ markdown_extensions:
 
 plugins:
   - search
-  - git-revision-date-localized:
-      enable_creation_date: true
-      type: date
+  - minify:
+      minify_html: true
 
 nav:
   - Home: index.md
