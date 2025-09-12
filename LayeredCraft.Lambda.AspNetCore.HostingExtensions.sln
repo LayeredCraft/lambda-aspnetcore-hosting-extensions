@@ -28,6 +28,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{93154236-6904-4ED9-BF76-B0B8EDE6B578}"
 	ProjectSection(SolutionItems) = preProject
 		docs\index.md = docs\index.md
+		mkdocs.yml = mkdocs.yml
+		requirements.txt = requirements.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{064CF7F9-2FC5-45EF-9718-346EC81E819A}"

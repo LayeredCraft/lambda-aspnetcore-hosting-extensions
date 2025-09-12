@@ -51,9 +51,6 @@ extra:
       link: https://layeredcraft.github.io
   generator: false
 
-extra_css:
-  - assets/css/extra.css
-
 markdown_extensions:
   - admonition
   - attr_list
