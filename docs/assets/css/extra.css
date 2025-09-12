@@ -1,0 +1,141 @@
+/* Custom styling for LayeredCraft Lambda ASP.NET Core Hosting Extensions docs */
+
+/* Brand colors */
+:root {
+  --layeredcraft-primary: #667eea;
+  --layeredcraft-secondary: #764ba2;
+  --layeredcraft-accent: #4f46e5;
+}
+
+/* Custom header styling */
+.md-header {
+  background: linear-gradient(135deg, var(--layeredcraft-primary) 0%, var(--layeredcraft-secondary) 100%);
+}
+
+/* Code block enhancements */
+.highlight {
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.highlight pre {
+  margin: 0;
+  border-radius: 0;
+}
+
+/* Admonition styling */
+.md-typeset .admonition {
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Badge styling */
+.md-typeset p img[alt*="Build"],
+.md-typeset p img[alt*="NuGet"],
+.md-typeset p img[alt*="Downloads"] {
+  margin-right: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Table improvements */
+.md-typeset table:not([class]) {
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.md-typeset table:not([class]) th {
+  background-color: var(--md-primary-fg-color);
+  color: var(--md-primary-bg-color);
+  font-weight: 600;
+}
+
+/* Feature grid styling */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.feature-card {
+  padding: 1.5rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 8px;
+  background: var(--md-code-bg-color);
+}
+
+.feature-card h3 {
+  margin-top: 0;
+  color: var(--md-primary-fg-color);
+}
+
+/* Emoji styling in headings */
+.md-typeset h1 .emoji,
+.md-typeset h2 .emoji,
+.md-typeset h3 .emoji {
+  font-size: 1.2em;
+  margin-right: 0.5rem;
+}
+
+/* Code copy button styling */
+.md-clipboard {
+  color: var(--md-primary-fg-color);
+}
+
+.md-clipboard:hover {
+  color: var(--md-accent-fg-color);
+}
+
+/* Navigation improvements */
+.md-nav__item--active > .md-nav__link {
+  color: var(--layeredcraft-accent);
+  font-weight: 600;
+}
+
+/* Footer customization */
+.md-footer {
+  background: linear-gradient(135deg, var(--layeredcraft-primary) 0%, var(--layeredcraft-secondary) 100%);
+}
+
+/* Custom button styling */
+.md-button {
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.md-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Status code styling */
+.md-typeset code {
+  background: var(--md-code-bg-color);
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 3px;
+  padding: 0.1em 0.3em;
+}
+
+/* Mermaid diagram styling */
+.mermaid {
+  background: transparent !important;
+}
+
+/* Search highlighting */
+.md-search-result__title mark {
+  background: var(--layeredcraft-accent);
+  color: white;
+}
+
+/* Mobile improvements */
+@media screen and (max-width: 768px) {
+  .feature-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .feature-card {
+    padding: 1rem;
+  }
+}
