@@ -8,8 +8,8 @@
         <LangVersion>default</LangVersion>
         <PackageId>LayeredCraft.Lambda.AspNetCore.HostingExtensions</PackageId>
         <Title>LayeredCraft.Lambda.AspNetCore.HostingExtensions</Title>
-        <Description>Provides reusable AWS CDK constructs for serverless .NET applications, including Lambda functions with OpenTelemetry, IAM roles, and environment configuration. Built for LayeredCraft projects using AWS CDK in C#.</Description>
-        <PackageTags>aws;cdk;lambda;constructs;dotnet;opentelemetry;infrastructure;cloudformation;layeredcraft</PackageTags>
+        <Description>ASP.NET Core hosting extensions for AWS Lambda, providing timeout-aware cancellation tokens and graceful request handling. Links Lambda timeout detection with HTTP request cancellation for improved reliability and proper resource cleanup in serverless applications.</Description>
+        <PackageTags>aws;lambda;aspnetcore;hosting;middleware;timeout;cancellation;serverless;dotnet;layeredcraft</PackageTags>
         <PackageIcon>icon.png</PackageIcon>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
