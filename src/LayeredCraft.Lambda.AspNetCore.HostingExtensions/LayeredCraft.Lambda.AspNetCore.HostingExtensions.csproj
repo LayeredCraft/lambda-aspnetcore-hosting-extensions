@@ -17,7 +17,7 @@
 
     <ItemGroup>
       <PackageReference Include="Amazon.Lambda.AspNetCoreServer" Version="9.2.0" />
-      <PackageReference Include="LayeredCraft.StructuredLogging" Version="1.1.1.8" />
+      <PackageReference Include="LayeredCraft.StructuredLogging" Version="1.1.2.10" />
     </ItemGroup>
     <ItemGroup>
         <None Include="..\..\docs\assets\icon.png" Pack="true" PackagePath="" Visible="False" />
