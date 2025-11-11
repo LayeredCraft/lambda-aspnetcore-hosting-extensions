@@ -4,7 +4,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <RootNamespace>LayeredCraft.Lambda.AspNetCore.Hosting</RootNamespace>
-        <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+        <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
         <LangVersion>default</LangVersion>
         <PackageId>LayeredCraft.Lambda.AspNetCore.HostingExtensions</PackageId>
         <Title>LayeredCraft.Lambda.AspNetCore.HostingExtensions</Title>
@@ -17,7 +17,7 @@
 
     <ItemGroup>
       <PackageReference Include="Amazon.Lambda.AspNetCoreServer" Version="9.2.0" />
-      <PackageReference Include="LayeredCraft.StructuredLogging" Version="1.1.1.8" />
+      <PackageReference Include="LayeredCraft.StructuredLogging" Version="1.1.3.11" />
     </ItemGroup>
     <ItemGroup>
         <None Include="..\..\docs\assets\icon.png" Pack="true" PackagePath="" Visible="False" />
