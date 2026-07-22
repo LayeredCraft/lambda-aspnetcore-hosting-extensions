@@ -17,9 +17,11 @@ on:
 permissions: write-all
 jobs:
   build:
-    uses: LayeredCraft/devops-templates/.github/workflows/package-build.yaml@v10.2
+    uses: LayeredCraft/devops-templates/.github/workflows/package-build.yaml@v6.4
     with:
       hasTests: true
+      useMtpRunner: true
+      testDirectory: "test"
       dotnet-version: |
         8.0.x
         9.0.x
