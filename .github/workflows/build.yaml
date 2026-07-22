@@ -16,7 +16,7 @@ on:
 permissions: write-all
 jobs:
   build:
-    uses: LayeredCraft/devops-templates/.github/workflows/package-build.yaml@v6.2
+    uses: LayeredCraft/devops-templates/.github/workflows/package-build.yaml@v10.1
     with:
       hasTests: true
       useMtpRunner: true
