@@ -6,7 +6,7 @@
     <PackageVersion Include="Amazon.Lambda.AspNetCoreServer" Version="9.2.1" />
   </ItemGroup>
   <ItemGroup Label="LayeredCraft">
-    <PackageVersion Include="LayeredCraft.StructuredLogging" Version="1.2.3" />
+    <PackageVersion Include="LayeredCraft.StructuredLogging" Version="1.2.4" />
   </ItemGroup>
   <ItemGroup Label="Microsoft">
     <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="10.0.301" />
