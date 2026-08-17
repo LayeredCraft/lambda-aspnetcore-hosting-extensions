@@ -12,7 +12,6 @@ jobs:
       solution: LayeredCraft.Lambda.AspNetCore.HostingExtensions.slnx
       hasTests: true
       useMtpRunner: true
-      testDirectory: "test"
       enableCodeCoverage: true
       coverageThreshold: 80
       dotnetVersion: |
